@@ -4,7 +4,7 @@ modelo.py
 
 Modelo de dominio del Sistema de Gestión Hospitalaria y Consultas "MediCare Pro".
 
-Actividad: Examen Parcial P1 — Programación Orientada a Objetos
+Actividad: Examen Parcial P1 — 
 Autor: Luis Alberto Villegas Merchan
 
 Este archivo reúne e integra los conceptos clave de las Semanas 1, 2 y 3:
@@ -19,9 +19,9 @@ from abc import ABC, abstractmethod
 
 from pydantic import BaseModel, Field
 
-# =====================================================================
+
 # MODELOS DE VALIDACIÓN PYDANTIC
-# =====================================================================
+
 
 class DatosPaciente(BaseModel):
     """Valida la integridad de los datos de un paciente."""
@@ -50,9 +50,9 @@ class DatosMedico(BaseModel):
     especialidad: str = Field(min_length=3, max_length=60)
 
 
-# =====================================================================
+
 # SEMANA 1: CLASES, OBJETOS, ENCAPSULACIÓN Y VALIDACIÓN
-# =====================================================================
+
 
 class Paciente:
     """
@@ -217,9 +217,9 @@ class Medicamento:
         )
 
 
-# =====================================================================
+
 # SEMANA 2: HERENCIA Y COMPOSICIÓN
-# =====================================================================
+
 
 class Medico:
     """
@@ -409,9 +409,9 @@ class Clinica:
         )
 
 
-# =====================================================================
+
 # SEMANA 3: CLASES ABSTRACTAS, INTERFACES Y POLIMORFISMO
-# =====================================================================
+
 
 class PlanSalud(ABC):
     """
@@ -534,9 +534,9 @@ class PlanConvenioSeguroPublico(PlanSalud):
         return "Convenio Seguro Social (Cobertura Total con Deducible $10)"
 
 
-# =====================================================================
+
 # COMPOSICIÓN Y POLIMORFISMO: CONSULTA MÉDICA
-# =====================================================================
+
 
 class ConsultaMedica:
     """

@@ -4,11 +4,11 @@
 ![Pydantic](https://img.shields.io/badge/Pydantic-v2.13.4-E92063?style=for-the-badge&logo=pydantic&logoColor=white)
 ![Ruff](https://img.shields.io/badge/Linter-Ruff-D7FF64?style=for-the-badge&logo=ruff&logoColor=black)
 ![POO](https://img.shields.io/badge/Paradigma-POO_Avanzado-1B365D?style=for-the-badge)
-![Blackboard](https://img.shields.io/badge/Evaluaci%C3%B3n-Examen_P1-green?style=for-the-badge)
+
 
 ---
 
-## 📌 Datos de la Evaluación y Estudiante
+## Datos de la Evaluación y Estudiante
 
 * **Estudiante:** Luis Alberto Villegas Merchan
 * **Materia:** Programación Orientada a Objetos / Programación Estructurada
@@ -18,7 +18,7 @@
 
 ---
 
-## 📑 Tabla de Contenidos
+##  Tabla de Contenidos
 
 1. [Descripción del Proyecto](#-descripción-del-proyecto)
 2. [Objetivos del Proyecto](#-objetivos-del-proyecto)
@@ -31,7 +31,7 @@
 
 ---
 
-## 🏥 Descripción del Proyecto
+##  Descripción del Proyecto
 
 **MediCare Pro** es una solución de software orientada a objetos diseñada para la administración hospitalaria, gestión de historias clínicas, farmacia interna y liquidación automatizada de consultas médicas con cálculo de coberturas y copagos según el seguro de salud del paciente.
 
@@ -43,7 +43,7 @@ El sistema modela el flujo completo de una clínica:
 
 ---
 
-## 🎯 Objetivos del Proyecto
+##  Objetivos del Proyecto
 
 * **Consolidar los aprendizajes de las Semanas 1, 2 y 3** en una arquitectura de software robusta, desacoplada y escalable.
 * Demostrar la **encapsulación estricta** mediante atributos privados (`__`) y validaciones de negocio en tiempo real.
@@ -53,7 +53,7 @@ El sistema modela el flujo completo de una clínica:
 
 ---
 
-## 🧩 Principios de POO Integrados
+##  Principios de POO Integrados
 
 ### 1. Semana 1: Clases, Objetos, Encapsulación y Validación
 * **Atributos Privados (`__`):** Ocultamiento de la información sensible del paciente (`__cedula`, `__nombre`, `__edad`, `__telefono`) y del medicamento (`__precio`, `__stock`).
@@ -88,7 +88,7 @@ El sistema modela el flujo completo de una clínica:
 
 ---
 
-## 📊 Diagrama de Clases UML
+##  Diagrama de Clases UML
 
 ```mermaid
 classDiagram
@@ -201,7 +201,7 @@ classDiagram
 
 ---
 
-## 📁 Estructura del Código Fuente
+##  Estructura del Código Fuente
 
 ```text
 examen-de-programacion-estructurada/
@@ -217,7 +217,7 @@ examen-de-programacion-estructurada/
 
 ---
 
-## 🚀 Instalación y Ejecución
+##  Instalación y Ejecución
 
 ### 1. Clonar el repositorio
 ```bash
@@ -242,7 +242,7 @@ python -m ruff check .
 
 ---
 
-## 📈 Demostración de Resultados
+##  Demostración de Resultados
 
 Al ejecutar `python main.py`, el sistema valida automáticamente:
 1. **Semana 1:** Crea paciente y medicamento con atributos privados, ejecuta getters/setters y rechaza datos anómalos mediante Pydantic (`[OK]`).
@@ -251,46 +251,3 @@ Al ejecutar `python main.py`, el sistema valida automáticamente:
 
 ---
 
-## 🎬 Guión para la Grabación del Video (Máx. 10 Minutos)
-
-Utiliza este guión estructurado mientras grabas tu pantalla mostrando el `README.md` y el código en VS Code:
-
-### ⏱ Minuto 0:00 - 1:30 | Presentación y Objetivos
-* *"Hola con todos, mi nombre es **Luis Alberto Villegas Merchan** y a continuación presento mi proyecto para el Examen Parcial P1 de Programación Orientada a Objetos."*
-* *(Muestra el README.md en modo Preview en VS Code)*.
-* *"El proyecto se titula **MediCare Pro**, un sistema de gestión hospitalaria y facturación médica desarrollado en Python 3.14 que integra de forma completa los temas estudiados en las Semanas 1, 2 y 3: encapsulación y validación de datos, herencia y composición, y clases abstractas con polimorfismo."*
-
-### ⏱ Minuto 1:30 - 3:30 | Explicación del Código: Semana 1 (Encapsulación y Pydantic)
-* *(Abre `modelo.py` y muestra las clases `Paciente` y `Medicamento`)*.
-* *"En la Semana 1 aplicamos **encapsulación estricta**. Todos los atributos como cédula, nombre, precio o stock tienen el prefijo privado `__`. Esto evita modificaciones indebidas desde el exterior y obliga al uso de métodos controlados `get_` y `set_`."*
-* *"Adicionalmente, integramos **Pydantic** (`DatosPaciente`, `DatosMedicamento`) en los constructores y setters para validar que las cédulas y teléfonos tengan exactamente 10 dígitos y que los precios y edades sean positivos."*
-
-### ⏱ Minuto 3:30 - 5:30 | Explicación del Código: Semana 2 (Herencia y Composición)
-* *(Muestra en `modelo.py` la jerarquía de `Medico`, `MedicoGeneral`, `CirujanoEspecialista` y la clase `Clinica`)*.
-* *"Para la Semana 2 implementamos **Herencia**: la clase base `Medico` define atributos comunes como salario y especialidad, mientras que `MedicoGeneral` y `CirujanoEspecialista` extienden de ella con `super().__init__()` y añaden comportamientos propios como el quirófano y bonos quirúrgicos."*
-* *"También aplicamos **Composición** en la clase `Clinica`, la cual administra colecciones dinámicas de médicos, pacientes y medicamentos para consolidar la operación hospitalaria."*
-
-### ⏱ Minuto 5:30 - 7:30 | Explicación del Código: Semana 3 (Clases Abstractas y Polimorfismo)
-* *(Muestra la clase `PlanSalud` y sus hijas en `modelo.py`, y la clase `ConsultaMedica`)*.
-* *"En la Semana 3 definimos la clase abstracta `PlanSalud` utilizando el módulo `abc.ABC` con métodos abstractos obligatorios `@abstractmethod def calcular_cobertura()` y `calcular_copago()`."*
-* *"Las clases `PlanParticular`, `PlanSeguroPrivado` (80%) y `PlanConvenioSeguroPublico` (\$10 deducible) sobrescriben estos métodos."*
-* *"El **Polimorfismo** se evidencia en la clase `ConsultaMedica`: al liquidar la cuenta, simplemente ejecuta `self.__plan_salud.calcular_copago(costo_bruto)`. **No existe ningún condicional `if/isinstance`**; Python resuelve la regla en tiempo de ejecución según el tipo real del plan asignado."*
-
-### ⏱ Minuto 7:30 - 9:30 | Ejecución y Demostración en Vivo
-* *(Abre la terminal de VS Code y ejecuta `python main.py`)*.
-* *"Ahora ejecutamos el proyecto con `python main.py`. Como podemos observar en la salida:"*
-  * *"Semana 1 pasa todas las pruebas y captura los datos inválidos con Pydantic."*
-  * *"Semana 2 demuestra el funcionamiento de médicos y la clínica."*
-  * *"Semana 3 bloquea la instanciación de la clase abstracta y genera los 3 comprobantes médicos calculando los descuentos de seguro de forma polimórfica y descontando el stock farmacéutico."*
-
-### ⏱ Minuto 9:30 - 10:00 | Conclusión y Repositorio en GitHub
-* *(Muestra el repositorio en el navegador o en Git)*.
-* *"El código se encuentra subido en mi repositorio público de GitHub en la rama `main`, validado sin errores con el linter Ruff."*
-* *"Muchas gracias por su atención."*
-
----
-
-## 👨‍💻 Autor
-
-**Luis Alberto Villegas Merchan**  
-Estudiante de Ingeniería de Software / Sistemas
