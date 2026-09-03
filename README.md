@@ -27,9 +27,7 @@
 5. [Estructura del Código Fuente](#-estructura-del-código-fuente)
 6. [Instalación y Ejecución](#-instalación-y-ejecución)
 7. [Demostración de Resultados](#-demostración-de-resultados)
-8. [🎬 Guión para la Grabación del Video (Máx. 10 Minutos)](#-guión-para-la-grabación-del-video-máx-10-minutos)
 
----
 
 ##  Descripción del Proyecto
 
