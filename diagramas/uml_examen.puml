@@ -1,0 +1,161 @@
+@startuml uml_examen
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    BorderColor #1B365D
+    ArrowColor #1B365D
+}
+
+' ===================================
+' ENTIDADES BASE (SEMANA 1)
+' ===================================
+class Paciente {
+    - __cedula: str
+    - __nombre: str
+    - __edad: int
+    - __telefono: str
+    + get_cedula(): str
+    + get_nombre(): str
+    + get_edad(): int
+    + get_telefono(): str
+    + set_nombre(nombre: str): void
+    + set_edad(edad: int): void
+    + set_telefono(telefono: str): void
+    + mostrar_informacion(): str
+}
+
+class Medicamento {
+    - __codigo: str
+    - __nombre: str
+    - __precio: float
+    - __stock: int
+    + get_codigo(): str
+    + get_nombre(): str
+    + get_precio(): float
+    + get_stock(): int
+    + set_precio(precio: float): void
+    + set_stock(stock: int): void
+    + aumentar_stock(cantidad: int): void
+    + disminuir_stock(cantidad: int): void
+    + mostrar_informacion(): str
+}
+
+' ===================================
+' JERARQUÍA MÉDICA (SEMANA 2)
+' ===================================
+class Medico {
+    - __cedula: str
+    - __nombre: str
+    - __salario_base: float
+    - __especialidad: str
+    + get_cedula(): str
+    + get_nombre(): str
+    + get_salario_base(): float
+    + get_especialidad(): str
+    + set_salario_base(salario: float): void
+    + calcular_honorarios_consulta(): float
+    + mostrar_informacion(): str
+}
+
+class MedicoGeneral {
+    - __consultorio: str
+    + get_consultorio(): str
+    + set_consultorio(consultorio: str): void
+    + calcular_honorarios_consulta(): float
+    + atender_paciente(paciente: Paciente): str
+}
+
+class CirujanoEspecialista {
+    - __quirofano: str
+    - __bono_cirugia: float
+    + get_quirofano(): str
+    + set_quirofano(quirofano: str): void
+    + get_bono_cirugia(): float
+    + calcular_honorarios_consulta(): float
+    + realizar_intervencion(paciente: Paciente): str
+}
+
+Medico <|-- MedicoGeneral : hereda
+Medico <|-- CirujanoEspecialista : hereda
+
+' ===================================
+' JERARQUÍA DE PLANES DE SALUD (SEMANA 3 - POLIMORFISMO)
+' ===================================
+abstract class PlanSalud <<abstract>> {
+    - __titular: str
+    - __numero_poliza: str
+    + get_titular(): str
+    + get_numero_poliza(): str
+    + {abstract} calcular_cobertura(costo_total: float): float
+    + {abstract} calcular_copago(costo_total: float): float
+    + {abstract} get_tipo_plan(): str
+    + mostrar_informacion(): str
+}
+
+class PlanParticular {
+    + calcular_cobertura(costo_total: float): float
+    + calcular_copago(costo_total: float): float
+    + get_tipo_plan(): str
+}
+
+class PlanSeguroPrivado {
+    - __porcentaje_cobertura: float (0.80)
+    + calcular_cobertura(costo_total: float): float
+    + calcular_copago(costo_total: float): float
+    + get_tipo_plan(): str
+}
+
+class PlanConvenioSeguroPublico {
+    - __deducible_fijo: float (10.00)
+    + calcular_cobertura(costo_total: float): float
+    + calcular_copago(costo_total: float): float
+    + get_tipo_plan(): str
+}
+
+PlanSalud <|-- PlanParticular : hereda / implementa
+PlanSalud <|-- PlanSeguroPrivado : hereda / implementa
+PlanSalud <|-- PlanConvenioSeguroPublico : hereda / implementa
+
+' ===================================
+' COMPOSICIÓN Y ADMINISTRACIÓN (SEMANAS 2 Y 3)
+' ===================================
+class Clinica {
+    - __nombre: str
+    - __direccion: str
+    - __medicos: List[Medico]
+    - __pacientes: List[Paciente]
+    - __medicamentos: List[Medicamento]
+    + registrar_medico(medico: Medico): void
+    + registrar_paciente(paciente: Paciente): void
+    + agregar_medicamento(medicamento: Medicamento): void
+    + get_medicos(): Tuple[Medico]
+    + get_pacientes(): Tuple[Paciente]
+    + get_medicamentos(): Tuple[Medicamento]
+    + mostrar_resumen_institucional(): str
+}
+
+class ConsultaMedica {
+    - __numero_atencion: str
+    - __paciente: Paciente
+    - __medico: Medico
+    - __plan_salud: PlanSalud
+    - __medicamentos_recetados: List[Tuple[Medicamento, int]]
+    + prescribir_medicamento(medicamento: Medicamento, cantidad: int): void
+    + calcular_subtotal_medicinas(): float
+    + calcular_costo_bruto(): float
+    + calcular_cobertura_aplicada(): float
+    + calcular_total_copago(): float
+    + confirmar_atencion(): str
+    + generar_detalle_factura(): str
+}
+
+Clinica *-- "0..*" Medico : administra
+Clinica *-- "0..*" Paciente : registra
+Clinica *-- "0..*" Medicamento : inventario
+
+ConsultaMedica o-- "1" Paciente : atiende
+ConsultaMedica o-- "1" Medico : atendido por
+ConsultaMedica o-- "1" PlanSalud : liquida polimorficamente
+ConsultaMedica *-- "0..*" Medicamento : prescribe
+
+@enduml
